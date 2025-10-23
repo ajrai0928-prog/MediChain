@@ -8,6 +8,7 @@ const { connectToMongoDB } = require('./config/connect');
 const authRoutes = require('./routes/authRoutes');
 const dashboardRoutes = require('./routes/dashboardRoutes');
 const patientRoute = require('./routes/patientRoute');
+const doctorUploadRoute = require('./routes/doctorUploadRoute');
 
 const app = express();
 
@@ -31,6 +32,7 @@ app.use("/auth", authRoutes);
 app.use("/dashboard", dashboardRoutes);
 
 app.use("/patient", patientRoute);
+app.use("/doctor", doctorUploadRoute);
 
 // Main page route
 app.get('/', (req, res) => {
