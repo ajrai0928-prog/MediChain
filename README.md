@@ -12,61 +12,58 @@ It allows patients to manage their health data, doctors to update medical record
 
 🚀 Live Demo links: 
 
-[https://mediora.onrender.com](https://mediora.onrender.com)
-[https://medichain.up.railway.app/](https://medichain.up.railway.app/)
-[https://medichain1.onrender.com/](https://medichain1.onrender.com/)
+- [MediChain](https://medichainreal.netlify.app/)
+- [MediChain Backend](https://medichain.up.railway.app/)
 
 ---
 
 ## ✨ Features
 
-- **🛡️ Role-Based Access** – Secure, distinct roles for **Patients**, **Doctors**, and **Admins**.
-- **🔐 Secure Authentication** – User sign-up and login (in future will be handled by **Firebase Authentication**).
-- **👤 Patient Profiles** – Patients can sign up, log in, and manage their own profile information.
-- **🩺 Electronic Health Records (EHR)** – Verified doctors can view and update medical records (diagnoses, prescriptions, notes).
-- **🗓️ Appointment Scheduling** – Patients can book and cancel appointments with doctors.
-- **👮 Admin Verification** – Admins have oversight to approve doctor registration requests.
-- **🎨 Responsive UI** – Built with **Bootstrap 5**, **Tailwind CSS** and custom EJS templates.
-- **🌍 Deployed on Render** – Connected with **MongoDB Atlas** for cloud storage.
+- **🛡️ Role-Based Access Control** — Separate secure dashboards for **Patients**, **Doctors**, and **Hospitals**.  
+- **🔐 JWT Authentication System** — Ensures secure login and session management.  
+- **👤 Patient Management** — Patients can view, update, and upload profile pictures and health data.  
+- **📂 Cloud File Uploads** — Doctors and hospitals can upload lab reports and prescriptions to patient records using **Multer + Cloudinary**.  
+- **💬 Chat History & Health Notes** — Stores doctor–patient interactions securely.  
+- **☁️ Cloud-Based Data Storage** — All medical data and images are safely hosted via **MongoDB Atlas** and **Cloudinary**.  
+- **🧠 AI Integration (Coming Soon)** — Planned **Google Gemini AI** integration to analyze lab reports and generate medical insights.  
 
 ---
 
 ## 🛠️ Technologies Used
 
 - **Backend:** Node.js, Express.js  
-- **Frontend:** EJS, Bootstrap, Tailwind CSS 
+- **Frontend:** EJS, Tailwind CSS  
 - **Database:** MongoDB Atlas (Mongoose ODM)  
-- **Authentication:** JWT based
-- **Deployment:** Render  
+- **Authentication:** JWT + Cookies  
+- **File Uploads:** Multer + Cloudinary  
+- **Deployment:** Render (Backend), Netlify (Frontend) 
 
 ---
 
 ## 📂 Project Structure
 ```
-MediChain/
-│── controllers/
-│ └── authController.js
-│── middleware/
-│ └── authMiddleware.js
-│── models/
-│ ├── Doctor.js
-│ ├── Hospital.js
-│ └── Patient.js
-│── routes/
-│ ├── authRoutes.js
-│ └── dashboardRoutes.js
-│── views/
-│ ├── 404.ejs
-│ ├── doctorDashboard.ejs
-│ ├── home.ejs
-│ ├── hospitalDashboard.ejs
-│ ├── login.ejs
-│ ├── patientDashboard.ejs
-│ └── signup.ejs
-│── .env
-│── connect.js
-│── package.json
-└── server.js
+MediVault/
+├── backend/
+│ ├── controllers/
+│ ├── middleware/
+│ ├── models/
+│ ├── routes/
+│ ├── config/
+│ ├── connect.js
+│ ├── server.js
+│ ├── .env
+│ └── package.json
+│
+└── frontend/
+├── src/
+│ ├── components/
+│ ├── pages/
+│ ├── assets/
+│ └── main.jsx
+├── vite.config.js
+├── index.html
+├── .env
+└── package.json
 ```
 
 
@@ -76,7 +73,7 @@ MediChain/
 
 Follow these steps to run the project locally:
 
-### 1. Clone the repository
+### 🔹 Backend Setup
 ```bash
 git clone https://github.com/theadarsh1m/MediChain.git
 cd MediChain
