@@ -1,4 +1,5 @@
-import React from 'react';
+import React from "react";
+import Typewriter from "typewriter-effect";
 
 export default function Hero() {
   return (
@@ -18,10 +19,18 @@ export default function Hero() {
         <p
           data-scroll
           data-scroll-speed="1.2"
-          className="reveal reveal-up text-lg md:text-xl text-gray-600 mb-8 max-w-2xl mx-auto"
+          className="decs reveal reveal-up text-lg md:text-2xl text-gray-600 mb-8 max-w-2xl mx-auto"
         >
-          A blockchain-secured, three-portal medical record & hospital
-          management system for Patients, Doctors, and Hospitals.
+          <Typewriter
+            options={{
+              strings: ["A blockchain-secured, three-portal medical record & hospital management system for Patients, Doctors, and Hospitals.", "Your secure, unified, and permanent medical record.", ],
+              delay:50,
+              deleteSpeed:25,
+              autoStart: true,
+              loop: true,
+              pauseFor: 2000,
+            }}
+          />
         </p>
         <a
           href="#features"

@@ -1,17 +1,13 @@
 @import "tailwindcss";
 @import 'locomotive-scroll/dist/locomotive-scroll.css';
 
-/* 2. Add your custom reveal animations */
 
-/* Base state for all reveal elements */
 .reveal {
   opacity: 0;
   visibility: hidden;
-  /* Adjust the transition for your liking */
   transition: all 1s cubic-bezier(0.165, 0.84, 0.44, 1);
 }
 
-/* Specific reveal directions */
 .reveal-up {
   transform: translateY(100px);
 }
@@ -23,11 +19,8 @@
 .reveal-right {
   transform: translateX(100px);
 }
-
-/* This is the magic: When Locomotive Scroll adds 'is-inview' */
 .reveal.is-inview {
   opacity: 1;
   visibility: visible;
-  /* Reset transforms to 0 */
   transform: translateY(0) translateX(0);
 }

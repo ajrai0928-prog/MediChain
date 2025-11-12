@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Menu, X, ShieldCheck } from 'lucide-react';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import { Menu, X, ShieldCheck } from "lucide-react";
 
 export default function Navbar({ locoScrollRef }) {
   const [isOpen, setIsOpen] = useState(false);
@@ -26,7 +26,11 @@ export default function Navbar({ locoScrollRef }) {
     >
       <div className="container mx-auto px-4 py-3 flex justify-between items-center">
         {/* Logo */}
-        <Link to="/" className="flex items-center gap-2 text-xl font-bold text-blue-600">
+        <Link
+          to="/"
+          className="flex items-center gap-2 text-xl font-bold text-blue-600"
+          onClick={() => handleScrollTo("#")}
+        >
           <ShieldCheck className="w-6 h-6" />
           <span>MediChain</span>
         </Link>
@@ -34,19 +38,19 @@ export default function Navbar({ locoScrollRef }) {
         {/* Desktop Nav */}
         <div className="hidden md:flex items-center gap-6">
           <a
-            onClick={() => handleScrollTo('#features')}
+            onClick={() => handleScrollTo("#features")}
             className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer"
           >
             Features
           </a>
           <a
-            onClick={() => handleScrollTo('#how-it-works')}
+            onClick={() => handleScrollTo("#how-it-works")}
             className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer"
           >
             How it Works
           </a>
           <a
-            onClick={() => handleScrollTo('#security')}
+            onClick={() => handleScrollTo("#security")}
             className="text-gray-600 hover:text-blue-600 transition-colors cursor-pointer"
           >
             Security
@@ -77,19 +81,19 @@ export default function Navbar({ locoScrollRef }) {
       {isOpen && (
         <div className="md:hidden bg-white shadow-lg absolute top-full left-0 right-0 py-4">
           <a
-            onClick={() => handleScrollTo('#features')}
+            onClick={() => handleScrollTo("#features")}
             className="block px-6 py-2 text-gray-700 hover:bg-gray-100"
           >
             Features
           </a>
           <a
-            onClick={() => handleScrollTo('#how-it-works')}
+            onClick={() => handleScrollTo("#how-it-works")}
             className="block px-6 py-2 text-gray-700 hover:bg-gray-100"
           >
             How it Works
           </a>
           <a
-            onClick={() => handleScrollTo('#security')}
+            onClick={() => handleScrollTo("#security")}
             className="block px-6 py-2 text-gray-700 hover:bg-gray-100"
           >
             Security
