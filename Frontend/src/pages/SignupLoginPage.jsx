@@ -1,65 +1,166 @@
 import React, { useState } from "react";
 import SignupForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
-import BackgroundDNA from "../components/BackgroundDNA";
 import Navbar from "../components/Navbar";
+import { useTheme } from "../context/ThemeContext";
+import Typewriter from "typewriter-effect";
 
-/**
- * SignupLoginPage.jsx
- * - Uses BackgroundDNA for extreme DNA lab animation
- * - Modal card sits on top (z-10)
- */
+const signupTexts = [
+  "Please sanitize your hands before signing up.",
+  "Your health data will love its new home.",
+  "Creating an account… this won’t hurt a bit (doctor’s classic lie).",
+  "Enter details — we ran out of nurses to do it for you.",
+];
+
+const loginTexts = [
+  "Please sanitize your hands before logging in.",
+  "Welcome back — we missed you more than your doctor.",
+  "Enter your password — we promise not to judge its strength.",
+  "Warning: Wrong password may cause mild emotional damage.",
+];
+
 export default function SignupLoginPage() {
   const [mode, setMode] = useState("signup");
-  const [open, setOpen] = useState(true);
+  const { isDark } = useTheme();
 
-  if (!open) return null;
+  const typewriterTexts = mode === "signup" ? signupTexts : loginTexts;
 
   return (
-    <div className="fixed inset-0 z-50">
-    <Navbar />
+    <div
+      className={`relative min-h-screen w-full transition-colors duration-300 ${
+        isDark
+          ? "dark bg-slate-950 text-white"
+          : "bg-linear-to-br from-blue-50 via-white to-purple-50 text-black"
+      }`}
+    >
+      <Navbar />
 
-      {/* Animated background */}
-      <BackgroundDNA />
+      <div className="fixed inset-0 z-0">
+        <div
+          className={`absolute inset-0 transition-colors duration-300 ${
+            isDark
+              ? "bg-black/60 backdrop-blur-[2px]"
+              : "bg-linear-to-br from-blue-100/20 to-purple-100/20 backdrop-blur-[1px]"
+          }`}
+        />
+      </div>
 
-      {/* subtle dim overlay to increase contrast on modal */}
-      <div className="absolute inset-0 bg-black/55 z-0" />
+      <div className="relative z-10 flex min-h-screen items-center justify-center p-4 py-20">
+        {/* Card */}
+        <div
+          className={`w-full max-w-lg relative backdrop-blur-xl border p-8 rounded-3xl transition-colors duration-300 ${
+            isDark
+              ? "bg-neutral-900/80 border-white/10 shadow-2xl"
+              : "bg-white border-blue-200/50 shadow-2xl drop-shadow-xl"
+          }`}
+        >
+          <div className="flex items-center justify-between mb-8">
+            <div className="flex items-center gap-3"></div>
 
-      {/* modal container */}
-      <div className="relative w-full max-w-lg mx-auto z-10">
-        <div className="relative bg-gradient-to-b from-neutral-900/80 to-neutral-900/70 backdrop-blur-2xl border border-white/10 p-7 rounded-2xl shadow-2xl">
-          {/* Header row: tabs + optional vector logo */}
-          <div className="flex items-center justify-between mb-6">
-            <div className="flex items-center gap-3">
-              <div className="rounded-full px-3 py-1 bg-white text-black font-medium">MediChain</div>
-            </div>
-
-            <div className="flex items-center gap-3">
-              <button
-                onClick={() => setMode("signup")}
-                className={`px-4 py-2 rounded-full text-sm transition ${mode === "signup" ? "bg-white text-black font-medium" : "bg-transparent text-white/70"}`}
+            <div className="flex items-center gap-2">
+              {/* Toggle Buttons */}
+              <div
+                className={`rounded-full p-1 flex border transition-colors duration-300 ${
+                  isDark
+                    ? "bg-black/40 border-white/5"
+                    : "bg-gray-200/60 border-blue-300/30"
+                }`}
               >
-                Sign up
-              </button>
-              <button
-                onClick={() => setMode("signin")}
-                className={`px-4 py-2 rounded-full text-sm transition ${mode === "signin" ? "bg-white text-black font-medium" : "bg-transparent text-white/70"}`}
-              >
-                Sign in
-              </button>
-              <button onClick={() => setOpen(false)} className="text-white/60 ml-2">✕</button>
+                <button
+                  onClick={() => setMode("signup")}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
+                    mode === "signup"
+                      ? isDark
+                        ? "bg-white text-black shadow-lg"
+                        : "bg-blue-600 text-white shadow-lg"
+                      : isDark
+                      ? "text-neutral-400 hover:text-white"
+                      : "text-gray-700 hover:text-gray-900"
+                  }`}
+                >
+                  Sign up
+                </button>
+                <button
+                  onClick={() => setMode("signin")}
+                  className={`px-4 py-1.5 rounded-full text-xs font-medium transition-all duration-300 cursor-pointer ${
+                    mode === "signin"
+                      ? isDark
+                        ? "bg-white text-black shadow-lg"
+                        : "bg-blue-600 text-white shadow-lg"
+                      : isDark
+                      ? "text-neutral-400 hover:text-white"
+                      : "text-gray-700 hover:text-gray-900"
+                  }`}
+                >
+                  Sign in
+                </button>
+              </div>
             </div>
           </div>
 
-          <h1 className="text-3xl font-extrabold text-white mb-6">
+          <h1
+            className={`text-3xl font-bold mb-2 transition-colors duration-300 ${
+              isDark ? "text-white" : "text-black"
+            }`}
+          >
             {mode === "signup" ? "Create an account" : "Welcome back"}
           </h1>
+          <div
+            className={`text-sm mb-6 transition-colors duration-300 ${
+              isDark ? "text-neutral-400" : "text-gray-700"
+            }`}
+          >
+            <Typewriter
+              options={{
+                strings: mode === "signup" ? signupTexts : loginTexts,
+                delay: 40,
+                deleteSpeed: 20,
+                autoStart: true,
+                loop: true,
+                pauseFor: 2000,
+              }}
+            />
+          </div>
 
-          {mode === "signup" ? <SignupForm /> : <LoginForm />}
-        </div>
+          <div
+            className={`transition-all duration-500 overflow-hidden ${
+              mode === "signup" ? "slide-in-left" : "slide-in-right"
+            }`}
+          >
+            {mode === "signup" ? <SignupForm /> : <LoginForm />}
+          </div>
 
-        <div className="mt-4 text-center text-neutral-400 text-sm">
-          {mode === "signup" ? "By creating an account, you agree to our Terms & Service" : "Don't have an account? Switch to Sign up"}
+          <div
+            className={`mt-6 text-center text-sm transition-colors duration-300 ${
+              isDark ? "text-neutral-500" : "text-gray-700"
+            }`}
+          >
+            {mode === "signup" ? (
+              <>
+                Already have an account?{" "}
+                <button
+                  onClick={() => setMode("signin")}
+                  className={`font-semibold hover:underline ${
+                    isDark ? "text-blue-400" : "text-blue-600"
+                  }`}
+                >
+                  Sign in
+                </button>
+              </>
+            ) : (
+              <>
+                Don't have an account?{" "}
+                <button
+                  onClick={() => setMode("signup")}
+                  className={`font-semibold hover:underline ${
+                    isDark ? "text-blue-400" : "text-blue-600"
+                  }`}
+                >
+                  Sign up
+                </button>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </div>
