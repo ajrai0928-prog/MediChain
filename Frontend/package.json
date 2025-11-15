@@ -15,12 +15,9 @@
     "@tailwindcss/vite": "^4.1.17",
     "@theme-toggles/react": "^4.1.0",
     "axios": "^1.13.2",
-<<<<<<< HEAD
     "framer-motion": "^12.23.24",
-=======
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
->>>>>>> 1054b36c5daecfe892b0c477e9a9f01bc0fdfa2e
     "locomotive-scroll": "^4.1.4",
     "lucide-react": "^0.553.0",
     "motion": "^12.23.24",
